@@ -10,7 +10,7 @@ body {
 
 .header {
     position: relative;
-    background-image: url('background.jpg'); /* 替换为你的背景图 */
+    background-image: url('background.JPG'); /*  */
     background-size: cover;
     background-position: center;
     height: 50vh;
