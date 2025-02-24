@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conference of Machine Learning in Economics</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #2d3436;
+            line-height: 1.6;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        /* 标题样式 */
+        .conference-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            letter-spacing: -0.05em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 1rem;
+        }
+
+        /* 信息区块 */
+        .info-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .info-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #3498db;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-content {
+            font-size: 1.2rem;
+            color: #34495e;
+            margin-left: 1.5rem;
+        }
+
+        /* 特别标注 */
+        .organizers {
+            font-weight: 600;
+            color: #2c3e50;
+            padding: 1rem 0;
+            border-top: 1px solid #ecf0f1;
+            margin-top: 2rem;
+        }
+
+        /* 交互元素 */
+        .action-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .action-link:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                margin: 2rem;
+                padding: 1.5rem;
+            }
+            
+            .conference-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="conference-title">Conference of Machine Learning in Economics</h1>
+        
+        <div class="info-section">
+            <div class="info-label">Date</div>
+            <div class="info-content">June 29th - 31th, 2025</div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-label">Venue</div>
+            <div class="info-content">Peking University</div>
+        </div>
+
+        <div class="organizers">
+            <div class="info-label">Co-organized by: </div>
+            <div class="info-content"><a href="https://liboecon.com" target="_blank">Bo Li </a>(Peking University) and <a href="https://web.stanford.edu/~maliars/" target="_blank">Seigure Maliar </a>(Santa Clara University)</div>
+            
+        </div>
+
+
+        <div class="organizers">
+            <div class="info-label">Registration: </div>
+            <div class="info-content">Feel free to send me an e-mail for more information and if you want to attend!</div>
+            
+        </div>
+
+        <div class="info-section">
+            <a href="Boli_files/conference_detial.pdf" class="action-link">Detailed Program</a>
+            <a href="mailto:libo.econ@pku.edu.cn" class="action-link">Contact Organizers</a>
+        </div>
+    </div>
+</body>
+</html>
