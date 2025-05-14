@@ -97,6 +97,30 @@
                 font-size: 2rem;
             }
         }
+        /* 新增参会者样式 */
+        .participants-table {
+            width: 100%;
+            margin-top: 2rem;
+            border-collapse: collapse;
+        }
+
+        .participants-table th {
+            background: #3498db;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .participants-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .participants-note {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -122,13 +146,67 @@
 
         <div class="organizers">
             <div class="info-label">Registration: </div>
-            <div class="info-content">Feel free to send me an e-mail for more information and if you want to attend!</div>
+            <div class="info-content">Feel free to send we an e-mail for more information and if you want to attend!</div>
             
         </div>
 
         <div class="info-section">
             <a href="Boli_files/conference_detial.pdf" class="action-link">Detailed Program</a>
             <a href="mailto:libo.econ@pku.edu.cn" class="action-link">Contact Organizers</a>
+        </div>
+
+        <div class="info-section">
+            <div class="info-label">Confirmed Participants</div>
+            <table class="participants-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Affiliation</th>
+                </tr>
+                <!-- 组织者保持置顶 -->
+                <tr>
+                    <td><a href="https://liboecon.com" target="_blank">Bo Li (Co-organizer)</a></td>
+                    <td>Peking University</td>
+                </tr>
+                <tr>
+                    <td><a href="https://web.stanford.edu/~maliars/" target="_blank">Serguei Maliar (Co-organizer)</a></td>
+                    <td>Santa Clara University</td>
+                </tr>
+
+                <!-- 按last name音序排列 -->
+                <tr>
+                    <td>Zhigang Feng (冯志刚)</td>
+                    <td>University of Nebraska-Omaha</td>
+                </tr>
+                <tr>
+                    <td>Ji Huang (黄吉)</td>
+                    <td>Department of Economics, The Chinese University of Hong Kong</td>
+                </tr>
+                <tr>
+                    <td>Felix Kubler</td>
+                    <td>University of Zurich and Swiss Finance Institute</td>
+                </tr>
+                <tr>
+                    <td>Simon Scheidegger</td>
+                    <td>Department of Economics, HEC Lausanne</td>
+                </tr>
+                <tr>
+                    <td>Jeffrey Sun</td>
+                    <td>University of Toronto</td>
+                </tr>
+                <tr>
+                    <td>Yucheng Yang (杨雨成)</td>
+                    <td>University of Zurich and Swiss Finance Institute</td>
+                </tr>
+                <tr>
+                    <td>Kai Zhao (赵开)</td>
+                    <td>Department of Economics, University of Connecticut</td>
+                </tr>
+                <tr>
+                    <td>Shenghao Zhu (朱胜豪)</td>
+                    <td>University of International Business and Economics</td>
+                </tr>
+            </table>
+
         </div>
     </div>
 </body>
