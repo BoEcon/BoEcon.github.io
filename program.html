@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #2a9d8f);
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        h1 {
+            color: #2a9d8f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #1a2a6c;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .back-btn {
+            background: #2a9d8f;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: #1a2a6c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 42, 108, 0.4);
+        }
+        
+        .lecture-list {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .lecture-header {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            background: #1a2a6c;
+            color: white;
+            padding: 18px 30px;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .lecture-item {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            padding: 25px 30px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .lecture-item:last-child {
+            border-bottom: none;
+        }
+        
+        .lecture-item:hover {
+            background-color: #f8f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .speaker {
+            font-weight: 700;
+            color: #1a2a6c;
+            font-size: 1.2rem;
+        }
+        
+        .paper {
+            color: #444;
+            font-size: 1.1rem;
+        }
+        
+        .paper-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .paper-title {
+            font-weight: 600;
+            color: #2a9d8f;
+        }
+        
+        .collaborators {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2a9d8f;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #1a2a6c;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .lecture-header, .lecture-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .lecture-header {
+                padding: 15px;
+            }
+            
+            .lecture-item {
+                padding: 20px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Programs</h1>
+            </div>
+            <a href="conference_new.html">
+                <button class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+            </a>
+        </header>
+        
+        <div class="lecture-list">
+            <div class="lecture-header">
+                <div>Speaker</div>
+                <div>Paper</div>
+            </div>
+
+            <div class="lecture-item">
+                <div class="speaker">Zhigang Feng</div>
+                <div class="paper">
+                    <div class="paper-title">Ramsey Taxation, Public Debt Sustainability, and Asset Pricing in Incomplete Markets</div>
+                </div>
+            </div>
+
+            <div class="lecture-item">
+                <div class="speaker">Ji Huang</div>
+                <div class="paper">
+                    <div class="paper-title">A Probabilistic Solution to High-Dimensional Continuous-Time Macro and Finance Models</div>
+                </div>
+            </div>
+            
+            <div class="lecture-item">
+                <div class="speaker">Felix Kubler</div>
+                <div class="paper">
+                    <div class="paper-title">A Lagrangian Approach to Optimal Lotteries in Non-Convex Economies</div>
+                </div>
+            </div>
+
+            <div class="lecture-item">
+                <div class="speaker">Serguei Maliar</div>
+                <div class="paper">
+                    <div class="paper-title">The Power of Open-Mouth Policies</div>
+                </div>
+            </div>
+
+            <div class="lecture-item">
+                <div class="speaker">Qirui Mi</div>
+                <div class="paper">
+                    <div class="paper-title">Econ Gym</div>
+                </div>
+            </div>
+
+            <div class="lecture-item">
+                <div class="speaker">Simon Scheidegger</div>
+                <div class="paper">
+                    <div class="paper-title">Using Machine Learning to Compute Constrained Optimal Carbon Tax Rules in a Stochastic Overlapping Generations Model</div>
+                    <div class="collaborators">(joint work with Felix Kübler, Oliver Surbek)</div>
+                </div>
+            </div>
+
+            <div class="lecture-item">
+                <div class="speaker">Jeffrey Sun</div>
+                <div class="paper">
+                    <div class="paper-title">The Distributional Consequences of Climate Change: Housing Wealth, Expectations, and Uncertainty</div>
+                </div>
+            </div>
+
+            <div class="lecture-item">
+                <div class="speaker">Yucheng Yang</div>
+                <div class="paper">
+                    <div class="paper-title">Endogenous Portfolio Choice in Incomplete Market</div>
+                </div>
+            </div>
+            
+            <div class="lecture-item">
+                <div class="speaker">Kai Zhao</div>
+                <div class="paper">
+                    <div class="paper-title">Intergenerational Persistence of Health and Earnings</div>
+                </div>
+            </div>
+
+            <div class="lecture-item">
+                <div class="speaker">Yaolang Zhong</div>
+                <div class="paper">
+                    <div class="paper-title">Operator Learning in Heterogeneous Agent Models</div>
+                </div>
+            </div>
+            
+            <div class="lecture-item">
+                <div class="speaker">Shenghao Zhu</div>
+                <div class="paper">
+                    <div class="paper-title">Optimal Taxation for Economy with Idiosyncratic Shocks and Aggregate Uncertainty</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        // 为讲座项添加交互效果
+        document.querySelectorAll('.lecture-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+        
+        // 模拟加载效果
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 300);
+        });
+    </script>
+</body>
+</html>
