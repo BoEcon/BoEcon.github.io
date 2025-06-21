@@ -6,65 +6,78 @@
     <title>Program Info</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* 主要颜色变量 */
+        :root {
+            --pku-red: #990033;       /* 北大红主色 */
+            --pku-red-light: #b3003d; /* 浅北大红 */
+            --pku-red-dark: #800029;  /* 深北大红 */
+            --pku-gold: #ffcc00;      /* 辅助金色 */
+            --pku-gray: #f5f5f5;      /* 浅灰色背景 */
+            --pku-text: #333333;      /* 主要文字颜色 */
+            --pku-text-light: #666666; /* 次要文字颜色 */
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #2a9d8f);
+            background: linear-gradient(135deg, #700022, #990033, #b3003d);
             background-attachment: fixed;
-            color: #333;
+            color: var(--pku-text);
             line-height: 1.6;
-            padding-bottom: 50px;
+            padding: 20px 0 50px;
+            min-height: 100vh;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
         header {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 20px;
+            background: linear-gradient(to right, var(--pku-red-dark), var(--pku-red));
+            border-radius: 15px;
+            padding: 30px 40px;
             margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 20px;
-            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            color: white;
         }
         
         .header-content {
             flex: 1;
+            z-index: 2;
         }
         
-        h1 {
-            color: #2a9d8f;
-            font-size: 2.5rem;
+        .header-content h1 {
+            font-size: 2.8rem;
             margin-bottom: 10px;
-            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: white;
         }
         
-        .subtitle {
-            color: #1a2a6c;
-            font-size: 1.2rem;
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: 500;
+        .header-content p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
         }
         
         .back-btn {
-            background: #2a9d8f;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
             color: white;
-            border: none;
-            padding: 12px 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 30px;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 600;
@@ -72,254 +85,592 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);
+            gap: 10px;
+            z-index: 2;
         }
         
         .back-btn:hover {
-            background: #1a2a6c;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(26, 42, 108, 0.4);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .lecture-list {
+        .header-decoration {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .header-decoration::before {
+            content: "";
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 50%;
+        }
+        
+        .conference-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-card h2 {
+            color: #1d3a70;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2a9d8f;
+        }
+        
+        .info-card ul {
+            list-style-type: none;
+        }
+        
+        .info-card li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-card li i {
+            color: var(--pku-red);
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .day-schedule {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 40px;
         }
         
-        .lecture-header {
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            background: #1a2a6c;
+        .day-header {
+            background: linear-gradient(to right, #2a5699, #1d3a70);
             color: white;
-            padding: 18px 30px;
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-        
-        .lecture-item {
-            display: grid;
-            grid-template-columns: 1fr 3fr;
             padding: 25px 30px;
-            border-bottom: 1px solid #eee;
-            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
-        .lecture-item:last-child {
-            border-bottom: none;
+        .day-title {
+            font-size: 1.8rem;
+            font-weight: 700;
         }
         
-        .lecture-item:hover {
-            background-color: #f8f9ff;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        .chair-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 3fr;
+        }
+        
+        .schedule-header {
+            display: contents;
+        }
+        
+        .schedule-header > div {
+            background: #1d3a70;
+            color: white;
+            padding: 18px 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .schedule-item {
+            display: contents;
+        }
+        
+        .schedule-item > div {
+            padding: 22px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .time {
+            color: #1d3a70;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
         
         .speaker {
             font-weight: 700;
-            color: #1a2a6c;
-            font-size: 1.2rem;
-        }
-        
-        .paper {
-            color: #444;
-            font-size: 1.1rem;
-        }
-        
-        .paper-info {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            color: #1d3a70;
+            font-size: 1.15rem;
         }
         
         .paper-title {
+            color: #2a5699;
             font-weight: 600;
-            color: #2a9d8f;
+            line-height: 1.5;
         }
         
         .collaborators {
             font-size: 0.95rem;
             color: #666;
             font-style: italic;
-            margin-top: 5px;
+            margin-top: 8px;
         }
         
-        .stats {
+        .break-item {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: #f8f9ff;
+            color: #1d3a70;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 25px 20px;
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            align-items: center;
         }
         
-        .stat-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            min-width: 200px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 700;
+        .break-item i {
+            margin-right: 12px;
             color: #2a9d8f;
-            margin-bottom: 5px;
         }
         
-        .stat-label {
-            font-size: 1.1rem;
-            color: #1a2a6c;
+        .schedule-item:nth-child(even) > div {
+            background-color: #f8f9ff;
+        }
+        
+        .schedule-item:hover > div {
+            background-color: #edf2ff;
+        }
+        
+        footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 30px 0;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 900px) {
+            .schedule-grid {
+                grid-template-columns: 1fr 2fr;
+            }
+            
+            .schedule-item > div:first-child {
+                grid-column: 1;
+            }
+            
+            .schedule-item > div:nth-child(2) {
+                grid-column: 2;
+            }
+            
+            .schedule-item > div:nth-child(3) {
+                grid-column: 1 / span 2;
+                padding-top: 5px;
+            }
+            
+            .schedule-header > div:first-child {
+                grid-column: 1;
+            }
+            
+            .schedule-header > div:nth-child(2) {
+                grid-column: 2;
+            }
+            
+            .schedule-header > div:nth-child(3) {
+                grid-column: 1 / span 2;
+            }
         }
         
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 text-align: center;
-                gap: 20px;
+                gap: 25px;
+                padding: 30px 25px;
             }
             
-            .lecture-header, .lecture-item {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .lecture-header {
-                padding: 15px;
-            }
-            
-            .lecture-item {
-                padding: 20px;
-            }
-            
-            .stats {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .stat-card {
+            .back-btn {
                 width: 100%;
-                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .schedule-grid {
+                display: block;
+            }
+            
+            .schedule-header {
+                display: none;
+            }
+            
+            .schedule-item {
+                display: grid;
+                grid-template-columns: 1fr;
+                padding: 20px;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .break-item {
+                grid-column: auto;
+            }
+            
+            .schedule-item > div {
+                border-bottom: none !important;
+                padding: 8px 0 !important;
+            }
+            
+            .time {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+                color: #2a9d8f;
             }
         }
+        
+        .highlight {
+            position: relative;
+        }
+        
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #2a9d8f;
+        }
+
+        /* ======== 全局修改 ======== */
+body {
+    background: linear-gradient(135deg, #700022, #990033, #b3003d);
+    color: var(--pku-text);
+}
+
+/* ======== 头部区域 ======== */
+header {
+    background: linear-gradient(to right, var(--pku-red-dark), var(--pku-red));
+    color: white;
+}
+
+.header-content h1 {
+    color: white;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.back-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.header-decoration {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.header-decoration::before {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+/* ======== 信息卡片 ======== */
+.info-card {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.info-card h2 {
+    color: var(--pku-red);
+    border-bottom: 2px solid var(--pku-gold);
+}
+
+.info-card li i {
+    color: var(--pku-red);
+}
+
+/* ======== 日程区域 ======== */
+.day-schedule {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.day-header {
+    background: linear-gradient(to right, var(--pku-red-dark), var(--pku-red));
+    color: white;
+}
+
+.chair-info {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.schedule-header > div {
+    background: var(--pku-red-dark);
+    color: white;
+}
+
+.time {
+    color: var(--pku-red);
+    font-weight: 600;
+}
+
+.speaker {
+    color: var(--pku-red-dark);
+    font-weight: 700;
+}
+
+.paper-title {
+    color: var(--pku-red);
+}
+
+.break-item {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--pku-red);
+    font-weight: 600;
+}
+
+.break-item i {
+    color: var(--pku-red);
+}
+
+.schedule-item:nth-child(even) > div {
+    background-color: rgba(255, 245, 245, 0.7);
+}
+
+.schedule-item:hover > div {
+    background-color: rgba(255, 235, 235, 0.9);
+}
+
+/* ======== 高亮效果 ======== */
+.highlight::after {
+    background: var(--pku-gold);
+}
+
+/* ======== 页脚 ======== */
+footer {
+    color: rgba(255, 255, 255, 0.8);
+}
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="header-content">
-                <h1>Programs</h1>
+                <h1>Conference on Machine Learning in Economics</h1>
             </div>
-            <a href="conference_new.html">
-                <button class="back-btn">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
-            </a>
+
+            <div class="header-decoration"></div>
         </header>
+
         
-        <div class="lecture-list">
-            <div class="lecture-header">
-                <div>Speaker</div>
-                <div>Paper</div>
-            </div>
-
-            <div class="lecture-item">
-                <div class="speaker">Zhigang Feng</div>
-                <div class="paper">
-                    <div class="paper-title">Ramsey Taxation, Public Debt Sustainability, and Asset Pricing in Incomplete Markets</div>
-                </div>
-            </div>
-
-            <div class="lecture-item">
-                <div class="speaker">Ji Huang</div>
-                <div class="paper">
-                    <div class="paper-title">A Probabilistic Solution to High-Dimensional Continuous-Time Macro and Finance Models</div>
-                </div>
+        <!-- Day 1 Schedule -->
+        <div class="day-schedule">
+            <div class="day-header">
+                <div class="day-title">Day 1: 30th June (Monday)</div>
+                <div class="chair-info">Chair: XXXX</div>
             </div>
             
-            <div class="lecture-item">
-                <div class="speaker">Felix Kubler</div>
-                <div class="paper">
-                    <div class="paper-title">A Lagrangian Approach to Optimal Lotteries in Non-Convex Economies</div>
+            <div class="schedule-grid">
+                <div class="schedule-header">
+                    <div>Schedule</div>
+                    <div>Speaker</div>
+                    <div>Paper</div>
                 </div>
-            </div>
 
-            <div class="lecture-item">
-                <div class="speaker">Serguei Maliar</div>
-                <div class="paper">
-                    <div class="paper-title">The Power of Open-Mouth Policies</div>
+                <div class="break-item">
+                    <i class="fas"></i>Welcome Speech (9:00-9:10)
                 </div>
-            </div>
+                
+                <div class="schedule-item">
+                    <div class="time">9:10-10:00</div>
+                    <div class="speaker">Simon Scheidegger<br>(HEC Lausanne)</div>
+                    <div class="paper">
+                        <div class="paper-title">Using Machine Learning to Compute Constrained Optimal Carbon Tax Rules in a Stochastic Overlapping Generations Model</div>
+                    </div>
+                </div>
+                <div class="break-item">
+                    <i class="fas"></i>Tea Break (10:00-10:30)
+                </div>
 
-            <div class="lecture-item">
-                <div class="speaker">Qirui Mi</div>
-                <div class="paper">
-                    <div class="paper-title">Econ Gym</div>
+                <div class="schedule-item">
+                    <div class="time">10:30-11:20</div>
+                    <div class="speaker">Yaolang Zhong<br>(University of Tokyo)</div>
+                    <div class="paper">
+                        <div class="paper-title">Operator Learning in Heterogeneous Agent Models</div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="lecture-item">
-                <div class="speaker">Simon Scheidegger</div>
-                <div class="paper">
-                    <div class="paper-title">Using Machine Learning to Compute Constrained Optimal Carbon Tax Rules in a Stochastic Overlapping Generations Model</div>
+                
+                <div class="schedule-item">
+                    <div class="time">11:20-12:10</div>
+                    <div class="speaker">Ji Huang<br>(The Chinese University of Hong Kong)</div>
+                    <div class="paper">
+                        <div class="paper-title">A Probabilistic Solution to High-Dimensional Continuous-Time Macro and Finance Models</div>
+                    </div>
+                </div>
+                
+                <div class="break-item">
+                    <i class="fas fa-utensils"></i>Lunch (12:10-14:30)
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">14:30-15:20</div>
+                    <div class="speaker">Felix Kubler<br>(University of Zurich)</div>
+                    <div class="paper">
+                        <div class="paper-title">A Lagrangian Approach to Optimal Lotteries in Non-Convex Economies</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">15:20-16:10</div>
+                    <div class="speaker">Zhigang Feng<br>(University of Nebraska-Omaha)</div>
+                    <div class="paper">
+                        <div class="paper-title">Ramsey Taxation, Public Debt Sustainability, and Asset Pricing in Incomplete Markets</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">16:30-17:20</div>
+                    <div class="speaker">Jeffrey Sun<br>(University of Toronto)</div>
+                    <div class="paper">
+                        <div class="paper-title">The Distributional Consequences of Climate Change: Housing Wealth, Expectations, and Uncertainty</div>
+                    </div>
                 </div>
             </div>
-
-            <div class="lecture-item">
-                <div class="speaker">Jeffrey Sun</div>
-                <div class="paper">
-                    <div class="paper-title">The Distributional Consequences of Climate Change: Housing Wealth, Expectations, and Uncertainty</div>
-                </div>
-            </div>
-
-            <div class="lecture-item">
-                <div class="speaker">Yucheng Yang</div>
-                <div class="paper">
-                    <div class="paper-title">Endogenous Portfolio Choice in Incomplete Market</div>
-                </div>
-            </div>
-            
-            <div class="lecture-item">
-                <div class="speaker">Kai Zhao</div>
-                <div class="paper">
-                    <div class="paper-title">Intergenerational Persistence of Health and Earnings</div>
-                </div>
-            </div>
-
-            <div class="lecture-item">
-                <div class="speaker">Yaolang Zhong</div>
-                <div class="paper">
-                    <div class="paper-title">Operator Learning in Heterogeneous Agent Models</div>
-                </div>
-            </div>
-            
-            <div class="lecture-item">
-                <div class="speaker">Shenghao Zhu</div>
-                <div class="paper">
-                    <div class="paper-title">Optimal Taxation for Economy with Idiosyncratic Shocks and Aggregate Uncertainty</div>
-                </div>
-            </div>
-            
         </div>
+        
+        <!-- Day 2 Schedule -->
+        <div class="day-schedule">
+            <div class="day-header">
+                <div class="day-title">Day 2: 1st July (Tuesday)</div>
+                <div class="chair-info">Chair: XXXX</div>
+            </div>
+            
+            <div class="schedule-grid">
+                <div class="schedule-header">
+                    <div>Schedule</div>
+                    <div>Speaker</div>
+                    <div>Paper</div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">9:00-9:50</div>
+                    <div class="speaker">Kai Zhao<br>(University of Connecticut)</div>
+                    <div class="paper">
+                        <div class="paper-title">Intergenerational Persistence of Health and Earnings</div>
+                    </div>
+                </div>
+
+                <div class="break-item">
+                    <i class="fas"></i>Tea Break and Group photo(9:50-10:30)
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">10:30-11:20</div>
+                    <div class="speaker">Yucheng Yang<br>(University of Zurich)</div>
+                    <div class="paper">
+                        <div class="paper-title">Endogenous Portfolio Choice in Incomplete Market</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">11:20-12:10</div>
+                    <div class="speaker">Shenghao Zhu<br>(University of International Business and Economics)</div>
+                    <div class="paper">
+                        <div class="paper-title">Optimal Taxation for Economy with Idiosyncratic Shocks and Aggregate Uncertainty</div>
+                    </div>
+                </div>
+                
+                <div class="break-item">
+                    <i class="fas fa-utensils"></i> Lunch (12:10-14:30)
+                </div>
+                
+                <div class="schedule-item">
+                    <div class="time">14:30-15:20</div>
+                    <div class="speaker">Qirui Mi<br>(Chinese Academy of Sciences)</div>
+                    <div class="paper">
+                        <div class="paper-title">Econ Gym</div>
+                    </div>
+                </div>
+                
+
+
+                <div class="schedule-item">
+                    <div class="time">15:20-16:10</div>
+                    <div class="speaker">Serguei Maliar<br>(Santa Clara University)</div>
+                    <div class="paper">
+                        <div class="paper-title">The Power of Open-Mouth Policies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     <script>
-        // 为讲座项添加交互效果
-        document.querySelectorAll('.lecture-item').forEach(item => {
-            item.addEventListener('click', function() {
-                this.classList.toggle('active');
+        // 添加简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为日程项添加点击效果
+            const scheduleItems = document.querySelectorAll('.schedule-item');
+            scheduleItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    // 添加临时动画效果
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 300);
+                });
             });
+            
+            // 页面加载动画
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 100);
         });
         
-        // 模拟加载效果
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-            }, 300);
-        });
+        // 初始页面状态
+        document.body.style.opacity = 0;
+        document.body.style.transition = 'opacity 0.5s ease-in';
     </script>
 </body>
 </html>
