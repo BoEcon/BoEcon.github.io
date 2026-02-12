@@ -5,120 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conference on Machine Learning in Economics</title>
     <style>
-        /* 尺雾常栌式项直 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-
-        body {
-            background: #f8f9fa;
-            color: #2d3436;
-            line-height: 1.6;
-        }
-
-        /* 水量用组织 */
-        .container {
-            max-width: 800px;
-            margin: 4rem auto;
-            padding: 2.5rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
-
-        /* 大阪桟先消失行 ~/* 
-        .conference-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 2rem;
-            letter-spacing: -0.05em;
-            border-bottom: 3px solid #ba213b;
-            padding-bottom: 1rem;
-        }
-
-        /* 代表桟式号 */
-        .info-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .info-label {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #7d1024;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .info-content {
-            font-size: 1.2rem;
-            color: #34495e;
-            margin-left: 1.5rem;
-        }
-
-        /* 能滥输具 */
-        .status-badge {
-            display: inline-block;
-            background: #27ae60;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-left: 1rem;
-        }
-
-        .organizers {
-            font-weight: 600;
-            color: #2c3e50;
-            padding: 1rem 0;
-            border-top: 1px solid #ecf0f1;
-            margin-top: 2rem;
-        }
-
-        /* 你身号作 */
-        .action-link {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.8rem 1.5rem;
-            background: #991c1c;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .action-link:hover {
-            background: #991c1c;
-            transform: translateY(-2px);
-        }
-
-        /* 小项组织 */
-        @media (max-width: 768px) {
-            .container {
-                margin: 2rem;
-                padding: 1.5rem;
-            }
-            
-            .conference-title {
-                font-size: 2rem;
-            }
-        }
-        /* 可轮发送自由桟先消失行 */
-        .status-successsful {
-            display: inline-block;
-            background: #27ae60;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-left: 0.5rem;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: #f8f9fa; color: #2d3436; line-height: 1.6; }
+        .container { max-width: 800px; margin: 4rem auto; padding: 2.5rem; background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .conference-title { font-size: 2.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 2rem; letter-spacing: -0.05em; border-bottom: 3px solid #ba213b; padding-bottom: 1rem; }
+        .info-section { margin-bottom: 2.5rem; }
+        .info-label { font-size: 1.1rem; font-weight: 600; color: #7d1024; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .info-content { font-size: 1.2rem; color: #34495e; margin-left: 1.5rem; }
+        .status-badge { display: inline-block; background: #27ae60; color: white; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.1rem; font-weight: 600; margin-left: 1rem; }
+        .organizers { font-weight: 600; color: #2c3e50; padding: 1rem 0; border-top: 1px solid #ecf0f1; margin-top: 2rem; }
+        .action-link { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 1.5rem; background: #991c1c; color: white; text-decoration: none; border-radius: 6px; transition: all 0.3s ease; margin-right: 1rem; }
+        .action-link:hover { background: #771515; transform: translateY(-2px); }
+        .photo-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ecf0f1; }
+        .photo-section img { width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 1rem; }
+        @media (max-width: 768px) { .container { margin: 2rem; padding: 1.5rem; } .conference-title { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -127,7 +27,7 @@
         
         <div class="info-section">
             <div class="info-label">Status</div>
-            <div class="info-content"><span class="status-successsful">《浅紨外》Successfully Held</span></div>
+            <div class="info-content"><span class="status-badge">✓ Successfully Held</span></div>
         </div>
         
         <div class="info-section">
@@ -141,11 +41,15 @@
         </div>
 
         <div class="organizers">
-            <div class="info-label">Arranged by: </div>
-            <div class="info-content"><a href="https://liboecon.com" target="_blank">Bo Li </a>(Peking University) and <a href="https://web.stanford.edu/~maliars/" target="_blank">Serguei Maliar </a>(Santa Clara University)</div>
-            
+            <div class="info-label">Arranged by:</div>
+            <div class="info-content"><a href="https://liboecon.com" target="_blank">Bo Li</a> (Peking University) and <a href="https://web.stanford.edu/~maliars/" target="_blank">Serguei Maliar</a> (Santa Clara University)</div>
         </div>
 
+        <div class="photo-section">
+            <div class="info-label">Photo Gallery</div>
+            <div class="info-content">Group Photo at School of Economics, Peking University</div>
+            <img src="Boli_files/conference_2025_group.png" alt="Conference Group Photo 2025">
+        </div>
 
         <div class="info-section">
             <a href="program.html" class="action-link">Programs</a>
