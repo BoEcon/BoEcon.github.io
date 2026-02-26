@@ -7,11 +7,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
+        @media print {
+        @page {
+            size: A4 portrait; /* 强制A4纵向 */
+            margin: 0; /* 无边距 */
+        }
+        html, body {
+            width: 210mm;
+            height: 297mm;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* 禁止滚动/分页 */
+        }
+        /* 禁止浏览器自动缩放 */
+        * {
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+        }
+        }
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #f3f4f6; 
             margin: 0;
-            padding: 20px;
             display: flex;
             justify-content: center;
         }
