@@ -9,17 +9,16 @@
     <style>
         @media print {
         @page {
-            size: A4 portrait; /* 强制A4纵向 */
-            margin: 0; /* 无边距 */
+            size: A4 portrait; 
+            margin: 0; 
         }
         html, body {
             width: 210mm;
             height: 297mm;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* 禁止滚动/分页 */
+            overflow: hidden; 
         }
-        /* 禁止浏览器自动缩放 */
         * {
             print-color-adjust: exact;
             -webkit-print-color-adjust: exact;
@@ -32,7 +31,6 @@
             display: flex;
             justify-content: center;
         }
-        /* 标准 A4 纸张比例与尺寸 (近似) */
         .poster-container {
             width: 800px;
             height: 1130px;
@@ -40,10 +38,8 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            /* 北大红自定义变量 */
             --pku-red: #8C0014;
         }
-        /* 右上角弧形图片容器 */
         .curve-bg {
             position: absolute;
             top: -5%;
@@ -88,8 +84,8 @@
                 <span class="text-gray-500 font-semibold text-[13px]">Format: In-person | Language: English</span>
             </p>
 
-            <p class="text-[13px] leading-relaxed text-gray-800 font-medium mb-6 pr-2">
-                Join us for intensive lectures and tutorials <br> designed to equip early and mid-stage researchers (including PhD students, junior faculty, and exceptional master's/undergraduates) with theoretical foundations and practical applications in deep learning and macro-finance.
+            <p class="text-[13px] leading-relaxed text-gray-800 font-medium mb-8 pr-2">
+                This summer school offers an intensive series of methodological lectures and tutorials designed to equip early-career researchers (including PhD students and junior faculty) and exceptional students with theoretical foundations and practical applications in deep learning and macro-finance.
             </p>
 
             <h3 class="text-[#8C0014] font-bold text-[16px] italic mb-3">Focus Areas:</h3>
@@ -102,7 +98,7 @@
                 <li class="flex items-start"><span class="text-[#8C0014] mr-2">✦</span> Continuous-time macro-finance & PDE methods</li>
             </ul>
             <p class="text-[12px] bg-gray-100 text-gray-700 p-2 rounded border-l-2 border-gray-400 font-medium mb-8 inline-block shadow-sm">
-                * Includes hands-on tutorials with concepts to code.
+                * Includes hands-on tutorials emphasizing concepts to code.
             </p>
 
             <h3 class="text-white bg-[#8C0014] inline-block px-3 py-1 font-bold text-[14px] uppercase mb-3 shadow-sm rounded-sm">
@@ -175,12 +171,22 @@
         <div class="absolute bottom-12 left-12 right-12 flex justify-between items-end z-10">
             
             <div class="w-[65%]">
-                <h3 class="text-[#8C0014] font-extrabold uppercase text-[15px] mb-3 tracking-wide">Host Organizations</h3>
-                <div class="flex items-center space-x-4 mb-4">
-                    <img src="pho/pku.jpg" alt="Peking University" class="w-[70px] h-[70px] rounded-full object-contain bg-white shadow-md border border-gray-100 p-1">
-                    <img src="pho/zu.png" alt="University of Zurich" class="w-[70px] h-[70px] rounded-full object-contain bg-white shadow-md border border-gray-100 p-1">
+                <h3 class="text-[#8C0014] font-extrabold uppercase text-[15px] mb-3 tracking-wide">Organizing Committee & Hosts</h3>
+                
+                <div class="flex items-center space-x-5 mb-3">
+                    <div class="flex items-center space-x-3 shrink-0">
+                        <img src="pho/pku.jpg" alt="Peking University" class="w-[60px] h-[60px] rounded-full object-contain bg-white shadow-md border border-gray-100 p-1">
+                        <img src="pho/zu.png" alt="University of Zurich" class="w-[60px] h-[60px] rounded-full object-contain bg-white shadow-md border border-gray-100 p-1">
+                    </div>
+                    
+                    <div class="text-[12px] text-gray-800 font-bold border-l-2 border-[#8C0014] pl-4 space-y-1">
+                        <p>Felix Kubler <span class="text-gray-500 font-medium">(UZH)</span></p>
+                        <p>Bo Li <span class="text-gray-500 font-medium">(PKU)</span></p>
+                        <p>Yucheng Yang <span class="text-gray-500 font-medium">(UZH)</span></p>
+                    </div>
                 </div>
-                <div class="flex items-center text-[12px] font-bold text-gray-800">
+
+                <div class="flex items-center text-[12px] font-bold text-gray-800 mt-2">
                     <svg class="w-5 h-5 text-[#8C0014] mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
                     Peking University, Beijing, China
                 </div>

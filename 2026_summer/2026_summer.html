@@ -8,13 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
-        .lang-zh { display: none; } /* 默认隐藏中文 */
+        .lang-zh { display: none; }
         .hero-bg {
             background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
         }
-        /* 弹窗动画 */
         .modal-enter { opacity: 0; transform: scale(0.95); }
         .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 300ms, transform 300ms; }
         .modal-leave { opacity: 1; transform: scale(1); }
@@ -63,12 +62,11 @@
             </h2>
             <div class="bg-white p-8 md:p-10 rounded-xl shadow-lg border-l-8 border-blue-600">
                 <div class="text-xl sm:text-2xl font-medium text-gray-800 leading-relaxed mb-8">
-                    <p class="lang-en">The PKU–Zurich PhD Summer School on Machine Learning for Macroeconomics and Finance is an international summer program that focuses on frontier applications of machine learning in macroeconomics and macro-finance. The program brings together world-leading faculty to provide systematic training in deep learning, reinforcement learning, and discrete- and continuous-time methods, with applications to heterogeneous-agent models, asset pricing, macro-finance, and dynamic general equilibrium.</p>
-                    <p class="lang-zh">北京大学–苏黎世大学 PhD Summer School on Machine Learning for Macroeconomics and Finance 是由北京大学与苏黎世大学学者联合主办的高端国际博士生暑期讲习班，聚焦<span class="text-blue-700 font-bold">机器学习方法在宏观经济学与宏观金融中的前沿应用</span>。讲习班邀请来自世界一流大学的顶尖学者，系统讲授深度学习、强化学习与离散/连续时间方法在异质性主体模型、资产定价、宏观金融与动态一般均衡中的最新进展，旨在帮助青年学者掌握前沿研究工具，并推动跨学科研究。</p>
+                    <p class="lang-en">The PKU–Zurich PhD Summer School on Machine Learning for Macroeconomics and Finance is an international academic program focusing on frontier applications of machine learning in macroeconomics and macro-finance. The program convenes world-leading faculty to provide rigorous, systematic training in deep learning, reinforcement learning, and discrete- and continuous-time methods, with applications to heterogeneous-agent models, asset pricing, macro-finance, and dynamic general equilibrium.</p>
+                    <p class="lang-zh">北京大学–苏黎世大学 PhD Summer School on Machine Learning for Macroeconomics and Finance 是由北京大学与苏黎世大学学者联合主办的高端国际博士生暑期讲习班，聚焦<span class="text-blue-700 font-bold">机器学习方法在宏观经济学与宏观金融中的前沿应用</span>。讲习班邀请来自世界一流大学的顶尖学者，系统讲授深度学习、强化学习与离散/连续时间方法在异质性主体模型、资产定价、宏观金融与动态一般均衡中的最新理论进展与计算工具，旨在帮助青年学者掌握前沿研究范式，推动跨学科基础研究。</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-100 pt-8 mt-4 max-w-4xl mx-auto">
-                    
                     <div class="bg-blue-50 rounded-xl p-6 flex items-center border border-blue-100 shadow-sm justify-center">
                         <div class="text-5xl mr-5">🏫</div>
                         <div>
@@ -108,7 +106,7 @@
                 <div class="relative p-10 sm:p-14 flex flex-col md:flex-row items-center justify-between">
                     <div class="md:w-2/3 mb-8 md:mb-0">
                         <div class="inline-block bg-green-500 text-white font-bold px-3 py-1 rounded-full text-sm mb-4 tracking-wide uppercase shadow-sm">
-                            <span class="lang-en">Following Event</span>
+                            <span class="lang-en">Post-Summer School Event</span>
                             <span class="lang-zh">讲习班后续重点会议</span>
                         </div>
                         <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 leading-tight">
@@ -132,6 +130,24 @@
                             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2 inline-block">
+                <span class="lang-en">Organizing Committee</span>
+                <span class="lang-zh">组织委员会</span>
+            </h2>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-200 flex flex-col md:flex-row items-center justify-between">
+                <ul class="text-lg md:text-xl text-gray-800 font-medium space-y-4 w-full md:w-2/3 mb-6 md:mb-0">
+                    <li class="flex items-center"><span class="text-blue-600 mr-3">▪</span> <span class="lang-en"><strong>Felix Kubler</strong> (University of Zurich)</span><span class="lang-zh"><strong>Felix Kubler</strong> (University of Zurich，北京大学经济学院荣誉教授)</span></li>
+                    <li class="flex items-center"><span class="text-blue-600 mr-3">▪</span> <span class="lang-en"><strong>Bo Li</strong> (Peking University)</span><span class="lang-zh"><strong>李博</strong> (北京大学)</span></li>
+                    <li class="flex items-center"><span class="text-blue-600 mr-3">▪</span> <span class="lang-en"><strong>Yucheng Yang</strong> (University of Zurich)</span><span class="lang-zh"><strong>杨雨成</strong> (University of Zurich)</span></li>
+                </ul>
+                <div class="w-full md:w-1/3 flex justify-start md:justify-end space-x-6">
+                    <img src="pho/pku.jpg" alt="Peking University" class="w-24 h-24 rounded-full object-contain bg-white shadow-sm border border-gray-100 p-2">
+                    <img src="pho/zu.png" alt="University of Zurich" class="w-24 h-24 rounded-full object-contain bg-white shadow-sm border border-gray-100 p-2">
                 </div>
             </div>
         </section>
@@ -224,7 +240,7 @@
             </div>
             <div class="mt-6 p-5 bg-yellow-50 text-yellow-800 rounded-lg text-lg border-l-4 border-yellow-500 font-medium shadow-sm">
                 <span class="lang-en">📌 All lectures are complemented by hands-on tutorials, emphasizing a complete workflow from concepts to code, and from economic models to numerical implementation.</span>
-                <span class="lang-zh">📌 课程配套 hands-on tutorials，强调从理论到代码、从模型到计算的完整训练。</span>
+                <span class="lang-zh">📌 课程配套 hands-on tutorials，强调从理论到代码、从模型到计算的完整学术训练。</span>
             </div>
         </section>
 
@@ -239,38 +255,33 @@
     </div>
 
     <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div>
-                <h3 class="text-xl font-bold text-white mb-4">
-                    <span class="lang-en">Organizers</span>
-                    <span class="lang-zh">组织者</span>
-                </h3>
-                <ul class="space-y-2 text-sm">
-                    <li><span class="lang-en">Felix Kubler (University of Zurich)</span><span class="lang-zh">Felix Kubler (University of Zurich，北京大学经济学院荣誉教授)</span></li>
-                    <li><span class="lang-en">Bo Li (Peking University)</span><span class="lang-zh">李博 (北京大学)</span></li>
-                    <li><span class="lang-en">Yucheng Yang (University of Zurich)</span><span class="lang-zh">杨雨成 (University of Zurich)</span></li>
-                </ul>
-            </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
                 <h3 class="text-xl font-bold text-white mb-4">
                     <span class="lang-en">Fees & Related Conference</span>
-                    <span class="lang-zh">费用与会议说明</span>
+                    <span class="lang-zh">费用与后续会议说明</span>
                 </h3>
-                <ul class="space-y-2 text-sm">
-                    <li><strong><span class="lang-en">Summer School:</span><span class="lang-zh">暑期学校:</span></strong> <span class="lang-en">Free of charge</span><span class="lang-zh">免费参加</span></li>
-                    <li><strong><span class="lang-en">Conference (July 11–12):</span><span class="lang-zh">同主题学术会议 (7月11–12日):</span></strong> <span class="lang-en">Details TBA; registration fee required</span><span class="lang-zh">另行通知，收取注册费</span></li>
+                <ul class="space-y-3 text-sm">
+                    <li><strong><span class="lang-en">Summer School:</span><span class="lang-zh">暑期讲习班:</span></strong> <span class="lang-en">Free of charge</span><span class="lang-zh">免费参加</span></li>
+                    <li><strong><span class="lang-en">Conference (July 11–12):</span><span class="lang-zh">学术会议 (7月11–12日):</span></strong> <span class="lang-en">Details TBA; registration fee required</span><span class="lang-zh">另行通知，将收取会务注册费</span></li>
                 </ul>
             </div>
             <div>
                 <h3 class="text-xl font-bold text-white mb-4">
-                    <span class="lang-en">Contact</span>
+                    <span class="lang-en">Contact Information</span>
                     <span class="lang-zh">联系我们</span>
                 </h3>
-                <ul class="space-y-2 text-sm">
-                    <ul class="space-y-2 text-sm">
-                        <li><strong><span class="lang-en">Conference Assistant:</span><span class="lang-zh">会议助理:</span></strong> <span class="lang-en">Peiyuan Zhang</span><span class="lang-zh">张培元</span></li>
-                        <li><strong><span class="lang-en">For any questions, please email:</span><span class="lang-zh">如有任何问题，请发送邮件至：</span></strong> <a href="mailto:zpyuan@pku.edu.cn" class="hover:text-white underline">zpyuan@pku.edu.cn</span></li>
-                    </ul>
+                <ul class="space-y-3 text-sm">
+                    <li>
+                        <strong><span class="lang-en">Academic Inquiries:</span><span class="lang-zh">学术咨询:</span></strong> 
+                        <span class="lang-en">Yucheng Yang (Email: <a href="mailto:yucheng.yang@uzh.ch" class="hover:text-white underline">yucheng.yang@uzh.ch</a>)</span>
+                        <span class="lang-zh">杨雨成 (邮箱: <a href="mailto:yucheng.yang@uzh.ch" class="hover:text-white underline">yucheng.yang@uzh.ch</a>)</span>
+                    </li>
+                    <li>
+                        <strong><span class="lang-en">Application & Other Inquiries:</span><span class="lang-zh">申请及其他咨询:</span></strong> 
+                        <span class="lang-en">Peiyuan Zhang (Email: <a href="mailto:zpyuan@pku.edu.cn" class="hover:text-white underline">zpyuan@pku.edu.cn</a>)</span>
+                        <span class="lang-zh">张培元 (邮箱: <a href="mailto:zpyuan@pku.edu.cn" class="hover:text-white underline">zpyuan@pku.edu.cn</a>)</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -286,13 +297,13 @@
                         <div class="mt-3 text-left sm:mt-0 sm:w-full">
                             <h3 class="text-3xl font-bold leading-6 text-gray-900 mb-6 border-b pb-4 flex justify-between items-center" id="modal-title">
                                 <span class="lang-en">Application Details</span>
-                                <span class="lang-zh">招生与申请</span>
+                                <span class="lang-zh">招生简章与申请指引</span>
                                 <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition text-2xl">&times;</button>
                             </h3>
                             <div class="mt-2 space-y-5 text-lg text-gray-600">
                                 <p><strong><span class="lang-en">Target Audience:</span><span class="lang-zh">招生规模与对象:</span></strong> <br>
-                                    <span class="lang-en">Approximately 60 participants. Primary target: PhD students in Economics, Finance, Computer Science, Mathematics, and related fields. Also welcome: Junior faculty and exceptionally strong senior undergraduate/master’s students.</span>
-                                    <span class="lang-zh">规模约 60 人。主要面向经济学、金融学、计算机科学、数学等相关方向博士生；同时欢迎青年教师以及特别优秀的高年级本科生与硕士生。</span>
+                                    <span class="lang-en">Capacity is limited to approximately 60 participants. The primary audience comprises PhD students in Economics, Finance, Computer Science, Mathematics, and contiguous disciplines. Early-career researchers (e.g., post-doctoral fellows and junior faculty) as well as exceptionally qualified master's and undergraduate students are highly encouraged to apply.</span>
+                                    <span class="lang-zh">招生规模约 60 人。主要面向经济学、金融学、计算机科学、数学等相关方向博士生；同时热忱欢迎青年学者（博士后、青年教师）以及具备扎实学术基础的高年级本科生与硕士生申请。</span>
                                 </p>
                                 <p><strong><span class="lang-en">Required Materials:</span><span class="lang-zh">申请材料:</span></strong> <br>
                                     <ul class="list-disc pl-5 mt-2 space-y-1">
@@ -302,9 +313,9 @@
                                             <li>Name & email of one potential referee (letters requested only if necessary)</li>
                                         </span>
                                         <span class="lang-zh">
-                                            <li>个人简历（CV，需列出学过的高级宏观经济学、计算机相关课程）</li>
+                                            <li>个人简历（CV，建议列明已修读的高级宏观经济学及计算机相关课程）</li>
                                             <li>个人陈述（Statement of Purpose，不超过 1 页）</li>
-                                            <li>学生申请人请提供一位可提供推荐信的教师姓名与邮箱（必要时联系）</li>
+                                            <li>学生申请人请提供一位推荐人的姓名与所在单位邮箱（仅作为备用联系）</li>
                                         </span>
                                     </ul>
                                 </p>
@@ -319,7 +330,7 @@
                 <div class="bg-gray-50 px-8 py-6 sm:flex sm:flex-row-reverse sm:px-10 gap-4 border-t">
                     <a href="#" class="inline-flex w-full justify-center rounded-lg bg-green-600 px-5 py-3 text-lg font-semibold text-white shadow-sm hover:bg-green-700 sm:w-auto transition">
                         <span class="lang-en">Apply via WeChat (China)</span>
-                        <span class="lang-zh">国内申请人：填写微信问卷</span>
+                        <span class="lang-zh">国内申请人：填写问卷星/微信</span>
                     </a>
                     <a href="#" class="mt-3 inline-flex w-full justify-center rounded-lg bg-blue-600 px-5 py-3 text-lg font-semibold text-white shadow-sm hover:bg-blue-700 sm:mt-0 sm:w-auto transition">
                         <span class="lang-en">Apply via Google Form (Intl)</span>
@@ -331,8 +342,7 @@
     </div>
 
     <script>
-        // 语言切换逻辑
-        let currentLang = 'en'; // 默认显示中文
+        let currentLang = 'en';
 
         function applyLanguage() {
             const enElements = document.querySelectorAll('.lang-en');
@@ -354,15 +364,12 @@
             applyLanguage();
         }
 
-        // 初始化页面语言
         applyLanguage();
 
-        // 弹窗逻辑
         const modal = document.getElementById('applicationModal');
         
         function openModal() {
             modal.classList.remove('hidden');
-            // 简单添加一点防止背景滚动的逻辑
             document.body.style.overflow = 'hidden';
         }
 
