@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽签</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ecf0f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* 密码拦截页 */
+        #auth-screen {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 100;
+        }
+        #auth-screen input {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 80%;
+            text-align: center;
+        }
+        #auth-screen button {
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        #auth-screen button:hover { background-color: #c0392b; }
+
+        /* 主应用页 */
+        #app-screen {
+            display: none;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+        }
+
+        /* 👑 高级滚筒老虎机效果 👑 */
+        .slot-machine {
+            background-color: #fff;
+            height: 140px; 
+            width: 70%;
+            margin: 0 auto 30px auto;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 6px solid #f1c40f;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 20px rgba(241, 196, 15, 0.4);
+        }
+
+        .slot-machine::before, .slot-machine::after {
+            content: '';
+            position: absolute;
+            left: 0; 
+            right: 0;
+            height: 40px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .slot-machine::before { background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%); top: 0; }
+        .slot-machine::after { background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%); bottom: 0; }
+
+        .reel-container { width: 100%; }
+
+        .reel-item {
+            height: 140px; 
+            line-height: 140px;
+            font-size: 60px;
+            font-weight: 900;
+            color: #2c3e50;
+            letter-spacing: 5px;
+        }
+        
+        .reel-item.winner {
+            color: #e74c3c;
+            text-shadow: 0px 4px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        /* 控制面板 */
+        .controls {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        select, button {
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+        select { background: #ecf0f1; color: #2c3e50; font-weight: bold; cursor: pointer; }
+        .draw-btn {
+            background-color: #f39c12;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+        }
+        .draw-btn:hover { background-color: #d35400; transform: translateY(-2px); }
+        .draw-btn:disabled { background-color: #95a5a6; cursor: not-allowed; transform: none; box-shadow: none;}
+        
+        #file-fallback { display: none; margin-bottom: 20px; color: #f1c40f; font-weight: bold;}
+    </style>
+</head>
+<body>
+
+    <div id="auth-screen">
+        <h2>🔒 抽签系统已锁定</h2>
+        <input type="password" id="pwd-input" placeholder="请输入密码" onkeypress="if(event.key === 'Enter') checkPassword()">
+        <br>
+        <button onclick="checkPassword()">解锁进入</button>
+        <p id="pwd-error" style="color: #ff6b81; display: none; margin-top: 15px;">密码错误</p>
+    </div>
+
+    <div id="app-screen">
+        <h1>✨ 经原2026春--抽签</h1>
+        
+        <div id="file-fallback">
+            ⚠️ 浏览器安全限制，请手动选择同目录下的 <b>student_2026.csv</b> 文件：<br><br>
+            <input type="file" id="csv-file" accept=".csv" onchange="handleFileUpload(event)">
+        </div>
+
+        <div class="slot-machine">
+            <div class="reel-container" id="reel">
+                <div class="reel-item" style="font-size: 30px; color: #7f8c8d;">等待就绪</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <select id="pool-selector">
+                <option value="all">全年级 (所有人)</option>
+                <option value="freshman">大一 (25级)</option>
+                <option value="senior">非大一 (高年级)</option>
+            </select>
+            <button class="draw-btn" id="draw-btn" onclick="startDraw()" disabled>读取数据中...</button>
+        </div>
+        <p id="stats-display" style="margin-top: 15px; color: #bdc3c7;"></p>
+    </div>
+
+    <script>
+        // 【密码设置】
+        const SECRET_PASSWORD = "666666"; 
+        
+        let allStudents = [];
+        let isDrawing = false;
+        const ITEM_HEIGHT = 140; 
+
+        function checkPassword() {
+            const input = document.getElementById("pwd-input").value;
+            if (input === SECRET_PASSWORD) {
+                document.getElementById("auth-screen").style.display = "none";
+                document.getElementById("app-screen").style.display = "block";
+                loadCSVData(); 
+            } else {
+                document.getElementById("pwd-error").style.display = "block";
+            }
+        }
+
+        function parseCSV(csvText) {
+            const rows = csvText.trim().split('\n');
+            const data = [];
+            for (let i = 1; i < rows.length; i++) {
+                if (!rows[i].trim()) continue;
+                const cols = rows[i].split(',');
+                if (cols.length >= 2) {
+                    data.push({
+                        year: cols[0].trim(),
+                        name: cols[1].trim()
+                    });
+                }
+            }
+            return data;
+        }
+
+        async function loadCSVData() {
+            try {
+                const response = await fetch('student_2026.csv');
+                if (!response.ok) throw new Error("拦截");
+                const text = await response.text();
+                processData(text);
+            } catch (error) {
+                document.getElementById("file-fallback").style.display = "block";
+                document.getElementById("draw-btn").innerText = "请先选择数据";
+            }
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                processData(e.target.result);
+                document.getElementById("file-fallback").style.display = "none";
+            };
+            reader.readAsText(file, "UTF-8");
+        }
+
+        function processData(csvText) {
+            allStudents = parseCSV(csvText);
+            const btn = document.getElementById("draw-btn");
+            if (allStudents.length > 0) {
+                btn.disabled = false;
+                btn.innerText = "⚡ 开始抽取";
+                updateStats();
+            } else {
+                btn.innerText = "数据为空";
+            }
+        }
+
+        document.getElementById("pool-selector").addEventListener("change", updateStats);
+
+        function updateStats() {
+            const pool = getFilteredPool();
+            document.getElementById("stats-display").innerText = `当前奖池人数：${pool.length} 人`;
+        }
+
+        function getFilteredPool() {
+            const mode = document.getElementById("pool-selector").value;
+            if (mode === "freshman") return allStudents.filter(s => s.year === "25");
+            if (mode === "senior") return allStudents.filter(s => s.year !== "25");
+            return allStudents; 
+        }
+
+        // 🎇 触发烟花彩炮特效的函数
+        function triggerFireworks() {
+            const duration = 3000; // 烟花持续喷射 3 秒
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                
+                // 左侧喷射
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
+                }));
+                // 右侧喷射
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
+                }));
+            }, 250);
+        }
+
+        function startDraw() {
+            if (isDrawing) return;
+            const pool = getFilteredPool();
+            if (pool.length === 0) {
+                alert("当前范围内没有学生！");
+                return;
+            }
+
+            isDrawing = true;
+            const btn = document.getElementById("draw-btn");
+            btn.disabled = true;
+            btn.innerText = "命运转动中...";
+
+            const reel = document.getElementById("reel");
+            
+            reel.style.transition = "none";
+            reel.style.transform = "translateY(0)";
+            reel.innerHTML = ""; 
+
+            const winnerIndex = Math.floor(Math.random() * pool.length);
+            const winner = pool[winnerIndex];
+
+            const SPIN_COUNT = 50; 
+            for (let i = 0; i < SPIN_COUNT; i++) {
+                const randomName = pool[Math.floor(Math.random() * pool.length)].name;
+                const div = document.createElement("div");
+                div.className = "reel-item";
+                div.innerText = randomName;
+                reel.appendChild(div);
+            }
+
+            const winnerDiv = document.createElement("div");
+            winnerDiv.className = "reel-item winner";
+            winnerDiv.innerText = winner.name;
+            reel.appendChild(winnerDiv);
+
+            void reel.offsetWidth;
+
+            const targetY = -(SPIN_COUNT * ITEM_HEIGHT);
+
+            reel.style.transition = "transform 4.5s cubic-bezier(0.1, 0.9, 0.2, 1)";
+            reel.style.transform = `translateY(${targetY}px)`;
+
+            // 动画结束后 (4.5秒)，解锁按钮并触发烟花！
+            setTimeout(() => {
+                isDrawing = false;
+                btn.disabled = false;
+                btn.innerText = "⚡ 再次抽取";
+                
+                // 🎇 就在这里！名字锁定，烟花绽放！
+                triggerFireworks();
+                
+            }, 4500);
+        }
+    </script>
+</body>
+</html>
